@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoXamarin.Views.LoginView">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="20">
+            <Label Text="Log in to your Insurance Account" 
+                   TextColor="DodgerBlue" 
+                   FontSize="Large"
+                   HorizontalTextAlignment="Center"/>
+            <Entry x:Name="Email" 
+                   Placeholder="Email" 
+                   HorizontalOptions="FillAndExpand"
+                   Text="{Binding Email}" />
+            <Entry x:Name="Password" 
+                   Placeholder="Password" 
+                   HorizontalOptions="FillAndExpand"
+                   IsPassword="True"
+                   Text="{Binding Password}" />
+            <Button x:Name="btnLogin"
+                    Text="Login"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="DarkBlue" TextColor="White"
+                    Command="{Binding LoginCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
