@@ -12,3 +12,5 @@
 # Note
 - Click on LogOut button on portal is not navigate to Login Page.
 
+# Setup
+- Instal Xamarin, Xamarin Remoted Simulator, Android SDK setup to Run Project.
