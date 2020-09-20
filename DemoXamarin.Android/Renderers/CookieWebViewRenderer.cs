@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Cookie = System.Net.Cookie;
@@ -39,9 +38,9 @@ namespace DemoXamarin.Droid.Renderers
             }
 
             var currentCookies = File.Exists(fileName) ? JsonConvert.DeserializeObject<IList<Cookie>>(File.ReadAllText(fileName)) 
-                : CastToListCookies(UserInfo.CookieContainer.GetCookies(new System.Uri(Contants.INDEX_URL)));
+                : CookieHelper.CastToListCookies(UserInfo.CookieContainer.GetCookies(new System.Uri(Contants.INDEX_URL)));
 
-            if (File.Exists(fileName) && IsExpiredCookie(currentCookies))
+            if (File.Exists(fileName) && CookieHelper.IsExpiredCookie(currentCookies))
             {
                 File.Delete(fileName);
                 await App.Current.MainPage.Navigation.PushModalAsync(new LoginView());
@@ -66,30 +65,6 @@ namespace DemoXamarin.Droid.Renderers
             }
             
             this.LoadUrl(Contants.INDEX_URL);
-        }
-
-        private bool IsExpiredCookie(IList<Cookie> cookies)
-        {
-            for (var i = 0; i < cookies.Count; i++)
-            {
-                if (cookies[i].Expires <= DateTime.Now)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private IList<Cookie> CastToListCookies(CookieCollection cookies)
-        {
-            var cookiesResult = new List<Cookie>();
-            for (var i = 0; i < cookies.Count; i++)
-            {
-                cookiesResult.Add(cookies[i]);
-            }
-
-            return cookiesResult;
         }
     }
 }

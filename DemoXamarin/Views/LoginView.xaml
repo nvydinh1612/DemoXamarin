@@ -17,6 +17,8 @@
                    HorizontalOptions="FillAndExpand"
                    IsPassword="True"
                    Text="{Binding Password}" />
+            <Label Text="{Binding ValidateMessage, Mode=TwoWay}"
+                   TextColor="Red"/>
             <Button x:Name="btnLogin"
                     Text="Login"
                     HorizontalOptions="FillAndExpand"
